@@ -24,6 +24,8 @@ class HabitTile extends StatelessWidget {
         fontSize: 16,
         color: AppColors.black,
       ),
+      trailing:
+          Text('${String.fromCharCodes(Runes('\u{1F525}'))} ${habit.streak}'),
       leading: Checkbox(
         value: habit.isCompleted,
         onChanged: onChanged,

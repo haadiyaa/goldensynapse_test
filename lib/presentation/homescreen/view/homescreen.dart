@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goldensynapse_task/core/appcolors.dart';
 import 'package:goldensynapse_task/core/constants.dart';
 import 'package:goldensynapse_task/presentation/dailyprogressscreen/view/dailyprogressscreen.dart';
 import 'package:goldensynapse_task/presentation/homescreen/widgets/habittile.dart';
@@ -12,14 +13,23 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('My Habits'),
         actions: [
-          IconButton(
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: AppColors.white,
+              backgroundColor: AppColors.lightBlue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => DailyProgressScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const DailyProgressScreen()));
             },
-            icon: Icon(Icons.list),
+            child: const Text('Show Progress'),
           ),
         ],
       ),
@@ -38,7 +48,6 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return HabitTile(
                       onChanged: (value) {
-                        print(value);
                         functionsProvider.updateCheck(
                           Constants.habitList[index],
                           value,

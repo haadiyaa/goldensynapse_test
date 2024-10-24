@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          scaffoldBackgroundColor: AppColors.lightBlue,
+          scaffoldBackgroundColor: AppColors.white,
           appBarTheme: AppBarTheme(
             titleTextStyle: AppTextStyle.head,
             backgroundColor: AppColors.lightBlue2,
