@@ -12,6 +12,13 @@ class AppColors {
     const Color.fromARGB(255, 241, 219, 245),
     const Color.fromARGB(255, 253, 249, 213),
   ];
+  static List<Color> tileColors2 = [
+    const Color.fromARGB(255, 253, 175, 182),
+    const Color.fromARGB(255, 179, 254, 183),
+    const Color.fromARGB(255, 255, 218, 162),
+    const Color.fromARGB(255, 243, 175, 255),
+    const Color.fromARGB(255, 255, 247, 171),
+  ];
   static List<Color> activeColors = [
     const Color.fromARGB(255, 147, 12, 25),
     const Color.fromARGB(255, 32, 154, 38),

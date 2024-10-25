@@ -16,23 +16,42 @@ class HabitTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      tileColor: AppColors.tileColors[index],
-      titleTextStyle: const TextStyle(
-        fontSize: 16,
-        color: AppColors.black,
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: Offset(5, 5),
+              color: Color.fromARGB(255, 192, 192, 192)),
+        ],
+        borderRadius: BorderRadius.circular(10),
+        color: habit.isCompleted
+            ? AppColors.tileColors2[index]
+            : AppColors.tileColors[index],
       ),
-      trailing:
-          Text('${String.fromCharCodes(Runes('\u{1F525}'))} ${habit.streak}'),
-      leading: Checkbox(
-        activeColor: AppColors.activeColors[index],
-        value: habit.isCompleted,
-        onChanged: onChanged,
-      ),
-      title: Text(
-        habit.name,
+      child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+        titleTextStyle: const TextStyle(
+          fontSize: 16,
+          color: AppColors.black,
+        ),
+        trailing:
+            Text('${String.fromCharCodes(Runes('\u{1F525}'))} ${habit.streak}'),
+        leading: Checkbox(
+          side: BorderSide(
+            color: AppColors.activeColors[index],
+            width: 2,
+          ),
+          activeColor: AppColors.activeColors[index],
+          value: habit.isCompleted,
+          onChanged: onChanged,
+        ),
+        title: Text(
+          habit.name,
+          style: const TextStyle(fontWeight: FontWeight.w500),
+        ),
       ),
     );
   }
