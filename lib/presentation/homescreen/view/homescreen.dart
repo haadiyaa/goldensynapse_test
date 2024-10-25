@@ -14,24 +14,26 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Habits'),
-        actions: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              foregroundColor: AppColors.white,
-              backgroundColor: AppColors.lightBlue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => const DailyProgressScreen()));
-            },
-            child: const Text('Show Progress'),
-          ),
-        ],
+        // actions: [
+        //   ElevatedButton(
+        //     style: ElevatedButton.styleFrom(
+        //       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        //       foregroundColor: AppColors.white,
+        //       backgroundColor: AppColors.lightBlue,
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(10),
+        //       ),
+        //     ),
+        //     onPressed: () {
+        //       Navigator.push(
+        //           context,
+        //           MaterialPageRoute(
+        //               builder: (_) => const DailyProgressScreen()));
+        //     },
+        //     child: const Text('Show Progress'),
+        //   ),
+        //   Constants.width10,
+        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -41,7 +43,7 @@ class HomeScreen extends StatelessWidget {
               child: Consumer<FunctionsProvider>(
                 builder: (context, functionsProvider, child) =>
                     ListView.separated(
-                  itemCount: Constants.habitList.length,
+                  itemCount: functionsProvider.habitList.length,
                   separatorBuilder: (BuildContext context, int index) {
                     return Constants.height15;
                   },
@@ -49,16 +51,61 @@ class HomeScreen extends StatelessWidget {
                     return HabitTile(
                       onChanged: (value) {
                         functionsProvider.updateCheck(
-                          Constants.habitList[index],
+                          functionsProvider.habitList[index],
                           value,
                         );
                       },
-                      habit: Constants.habitList[index],
+                      habit: functionsProvider.habitList[index],
                       index: index,
                     );
                   },
                 ),
               ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 10),
+                      foregroundColor: AppColors.white,
+                      backgroundColor: AppColors.lightBlue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const DailyProgressScreen()));
+                    },
+                    child: const Text('Show Progress'),
+                  ),
+                ),
+                Constants.width10,
+                Expanded(
+                  child: Consumer<FunctionsProvider>(
+                    builder: (context, functionsProvider, child) =>
+                        ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        foregroundColor: AppColors.white,
+                        backgroundColor: AppColors.lightBlue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () {
+                        functionsProvider.resetStreak();
+                      },
+                      child: const Text('Reset Streaks'),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

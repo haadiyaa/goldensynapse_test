@@ -4,7 +4,7 @@ import 'package:goldensynapse_task/core/appcolors.dart';
 class AppTextStyle {
   static const TextStyle head = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 28,
+    fontSize: 22,
     color: AppColors.black,
     fontFamily: 'Poppins',
   );

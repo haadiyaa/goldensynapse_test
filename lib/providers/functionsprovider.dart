@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:goldensynapse_task/core/constants.dart';
 import 'package:goldensynapse_task/data/models/habitmodel.dart';
 
 class FunctionsProvider extends ChangeNotifier {
+  List<HabitModel> habitList = [
+    HabitModel(name: "Drink Water"),
+    HabitModel(name: "Exercise"),
+    HabitModel(name: "Read"),
+    HabitModel(name: "Meditate"),
+    HabitModel(name: "Sleep"),
+  ];
   void updateCheck(HabitModel habit, bool? newValue) {
     habit.isCompleted = newValue ?? false;
     notifyListeners();
     if (habit.isCompleted) {
       DateTime today = DateTime.now();
-
       if (habit.lastCompleted != null &&
           today.difference(habit.lastCompleted!).inDays == 1) {
         habit.streak += 1;
@@ -25,7 +30,16 @@ class FunctionsProvider extends ChangeNotifier {
     }
   }
 
-  int countHabitsDone(List<HabitModel> habits) {
-    return habits.where((habit) => habit.isCompleted).length;
+  void resetStreak() {
+    for (var habit in habitList) {
+      habit.isCompleted = false;
+      habit.streak = 0;
+      habit.lastCompleted = null;
+    }
+    notifyListeners();
+  }
+
+  int countHabitsDone() {
+    return habitList.where((habit) => habit.isCompleted).length;
   }
 }

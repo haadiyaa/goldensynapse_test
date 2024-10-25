@@ -6,13 +6,7 @@ class Constants {
   static const String bgImage = 'assets/image/bg.png';
 
   //==================STRINGS===========================
-  static List<HabitModel> habitList = [
-    HabitModel(name: "Drink Water"),
-    HabitModel(name: "Exercise"),
-    HabitModel(name: "Read"),
-    HabitModel(name: "Meditate"),
-    HabitModel(name: "Sleep"),
-  ];
+  
 
   //=========================Sizes=====================
   static const SizedBox height5 = SizedBox(height: 5);
