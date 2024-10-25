@@ -8,4 +8,9 @@ class AppTextStyle {
     color: AppColors.black,
     fontFamily: 'Poppins',
   );
+  static const TextStyle streak = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 12,
+    color: AppColors.black,
+  );
 }

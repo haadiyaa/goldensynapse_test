@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:goldensynapse_task/core/appcolors.dart';
+import 'package:goldensynapse_task/core/apptextstyle.dart';
 import 'package:goldensynapse_task/data/models/habitmodel.dart';
 
 class HabitTile extends StatelessWidget {
@@ -37,8 +38,10 @@ class HabitTile extends StatelessWidget {
           fontSize: 16,
           color: AppColors.black,
         ),
-        trailing:
-            Text('${String.fromCharCodes(Runes('\u{1F525}'))} ${habit.streak}'),
+        trailing: Text(
+          '${String.fromCharCodes(Runes('\u{1F525}'))} ${habit.streak}',
+          style: AppTextStyle.streak,
+        ),
         leading: Checkbox(
           side: BorderSide(
             color: AppColors.activeColors[index],
