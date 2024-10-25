@@ -3,9 +3,12 @@ import 'package:goldensynapse_task/core/appcolors.dart';
 import 'package:goldensynapse_task/core/apptextstyle.dart';
 import 'package:goldensynapse_task/presentation/splashscreen/splashscreen.dart';
 import 'package:goldensynapse_task/providers/functionsprovider.dart';
+import 'package:goldensynapse_task/repository/hiverepository.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HiveHelper().initHive();
   runApp(const MyApp());
 }
 

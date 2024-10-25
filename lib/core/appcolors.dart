@@ -12,4 +12,11 @@ class AppColors {
     const Color.fromARGB(255, 241, 219, 245),
     const Color.fromARGB(255, 253, 249, 213),
   ];
+  static List<Color> activeColors = [
+    const Color.fromARGB(255, 147, 12, 25),
+    const Color.fromARGB(255, 32, 154, 38),
+    const Color.fromARGB(255, 214, 133, 11),
+    const Color.fromARGB(255, 129, 15, 149),
+    const Color.fromARGB(255, 222, 168, 5),
+  ];
 }

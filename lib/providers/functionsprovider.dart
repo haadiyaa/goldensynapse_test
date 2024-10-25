@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goldensynapse_task/data/models/habitmodel.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class FunctionsProvider extends ChangeNotifier {
   List<HabitModel> habitList = [
@@ -9,6 +10,51 @@ class FunctionsProvider extends ChangeNotifier {
     HabitModel(name: "Meditate"),
     HabitModel(name: "Sleep"),
   ];
+
+  Box<HabitModel> habitBox = Hive.box<HabitModel>('habits');
+
+  FunctionsProvider() {
+    loadHabits();
+    checkDate();
+  }
+
+  void checkDate() {
+    final today = DateTime.now();
+    for (var habit in habitBox.values) {
+      if (habit.lastCompleted == null ||
+          today.difference(habit.lastCompleted!).inDays >= 1) {
+        habit.isCompleted = false;
+        if (habit.lastCompleted == null ||
+            today.difference(habit.lastCompleted!).inDays == 1) {
+        } else {
+          habit.streak = 0;
+        }
+        updateHabit(habit);
+      }
+    }
+    notifyListeners();
+  }
+
+  void loadHabits() {
+    if (habitBox.isNotEmpty) {
+      habitList = habitBox.values.toList();
+      notifyListeners();
+    } else {
+      for (var habit in habitList) {
+        habitBox.add(habit);
+        print(habit.name);
+      }
+      notifyListeners();
+    }
+  }
+
+  void updateHabit(HabitModel habit) {
+    final habitIndex = habitList.indexOf(habit);
+    if (habitIndex != -1) {
+      habitBox.put(habitIndex, habit);
+    }
+  }
+
   void updateCheck(HabitModel habit, bool? newValue) {
     habit.isCompleted = newValue ?? false;
     notifyListeners();
@@ -25,9 +71,12 @@ class FunctionsProvider extends ChangeNotifier {
       habit.lastCompleted = today;
       notifyListeners();
     } else {
-      habit.streak = 0;
+      habit.streak -= 1;
       notifyListeners();
     }
+
+    updateHabit(habit);
+    notifyListeners();
   }
 
   void resetStreak() {
@@ -35,7 +84,9 @@ class FunctionsProvider extends ChangeNotifier {
       habit.isCompleted = false;
       habit.streak = 0;
       habit.lastCompleted = null;
+      updateHabit(habit);
     }
+
     notifyListeners();
   }
 
