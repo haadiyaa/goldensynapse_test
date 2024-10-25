@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:goldensynapse_task/data/models/habitmodel.dart';
 
 class Constants {
-  //==============IMAGES================================
-  static const String bgImage = 'assets/image/bg.png';
-
-  //==================STRINGS===========================
-  
-
   //=========================Sizes=====================
   static const SizedBox height5 = SizedBox(height: 5);
   static const SizedBox height10 = SizedBox(height: 10);
